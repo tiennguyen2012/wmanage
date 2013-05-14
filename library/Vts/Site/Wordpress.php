@@ -15,6 +15,7 @@ class Vts_Site_Wordpress
     private $_prexTable = "wp_";
     private $_domain = "vtscat.com";
     private $_prexDomainSample = "wsample";
+    private $_tempFolder = "E:/xampp/htdocs/vtssoft/wmanage.com/data/temp";
 
     /**
      * Set base path
@@ -72,10 +73,20 @@ class Vts_Site_Wordpress
         $command = "mysqldump -h " . $configResource['db']['params']['host'] .
             " -u " . $configResource['db']['params']['username'] .
             " -p" . $configResource['db']['params']['password'] . " " . $this->getDatabaseNameSample($siteSampleId) .
-            " | mysql -h " . $configResource['db']['params']['host'] .
+            " > ".$this->_tempFolder.'/'. $this->getDatabaseNameSample($siteSampleId) .".sql";
+
+        $commandCreate = "mysqladmin  -h " . $configResource['db']['params']['host'] .
             " -u " . $configResource['db']['params']['username'] .
-            " -p" . $configResource['db']['params']['password'] . " " . $domain;
+            " -p" . $configResource['db']['params']['password'] . " ". "create ".$domain;
+
+        $command2 = "mysql -h " . $configResource['db']['params']['host'] .
+            " -u " . $configResource['db']['params']['username'] .
+            " -p" . $configResource['db']['params']['password'] . " " . $domain." < ".$this->_tempFolder.'/'.
+            $this->getDatabaseNameSample($siteSampleId) .".sql";
+
         $res = exec($command);
+        $res = exec($commandCreate);
+        $res = exec($command2);
 
         /**
          * update some config for new domain.
