@@ -21,8 +21,15 @@ class ApiController extends Vts_Controller_AbstractApiController {
      * Create wordpress api
      */
     public function createWordpressAction(){
+        $siteSampleId = $this->_getParam("sample-id");
+        $domain = $this->_getParam("domain");
+
         $result = new stdClass();
 
+        if($siteSampleId && $domain){
+            $vtsWordpress = new Vts_Site_Wordpress();
+            $vtsWordpress->make($siteSampleId, $domain);
+        }
 
         echo json_encode($result);
     }
