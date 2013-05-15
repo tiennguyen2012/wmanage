@@ -1,0 +1,18 @@
+<div class="wordpress-sample">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Sample Site</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach($this->sampleSites as $sampleSite): ?>
+        <tr>
+            <td></td>
+            <td><?php echo $sampleSite ?></td>
+            <td>
+                <a href="/api/create-wordpress/sample-id/1/domain/dev.photoshop.com">Make site</a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

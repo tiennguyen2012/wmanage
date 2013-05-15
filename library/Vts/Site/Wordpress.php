@@ -11,11 +11,11 @@ class Vts_Site_Wordpress
 
     private $_basePath = "E:/xampp/htdocs/vtssoft";
     private $_endOfDb = "vtscat.com";
-    private $_prex = "wsample";
+    private $_prex = "samplew";
     private $_prexTable = "wp_";
     private $_domain = "vtscat.com";
-    private $_prexDomainSample = "wsample";
-    private $_tempFolder = "E:/xampp/htdocs/vtssoft/wmanage.com/data/temp";
+    private $_prexDomainSample = "samplew";
+    private $_tempFolder = "E:/xampp/htdocs/vtssoft/data/temp";
 
     /**
      * Set base path
@@ -34,7 +34,7 @@ class Vts_Site_Wordpress
      */
     public function getDatabaseNameSample($siteSamepleId)
     {
-        return $this->_prex . $siteSamepleId .".". $this->_endOfDb;
+        return $this->_prex . $siteSamepleId . "." . $this->_endOfDb;
     }
 
     /**
@@ -48,8 +48,43 @@ class Vts_Site_Wordpress
 
         //copy code
         $this->copyCodeSample($siteSampleId, $domain);
+
+        //change file config
+        $this->changeConfigFile($siteSampleId, $domain);
+
+        return $this->checkComplete($siteSampleId, $domain);
     }
 
+
+    /**
+     * check is complete
+     * @param $siteSampleId
+     * @param $domain
+     * @return bool
+     */
+    public function checkComplete($siteSampleId, $domain)
+    {
+        $isComplete = true;
+
+        //check exist database
+        $configResource = Vts_Config::get("resources");
+        $configResource = $configResource->toArray();
+        $configResource['db']['params']['dbname'] = $domain;
+        try {
+            mysql_connect($configResource['db']['params']['host'], $configResource['db']['params']['username'],
+                $configResource['db']['params']['password']);
+            $isComplete = mysql_select_db($domain);
+        } catch (Exception $e) {
+            $isComplete = false;
+        }
+
+        //check folder code
+        if(!is_dir($this->_basePath.'/site/'.$domain)){
+            $isComplete = false;
+        }
+
+        return $isComplete;
+    }
 
     /**
      * Setup database for site
@@ -73,16 +108,21 @@ class Vts_Site_Wordpress
         $command = "mysqldump -h " . $configResource['db']['params']['host'] .
             " -u " . $configResource['db']['params']['username'] .
             " -p" . $configResource['db']['params']['password'] . " " . $this->getDatabaseNameSample($siteSampleId) .
-            " > ".$this->_tempFolder.'/'. $this->getDatabaseNameSample($siteSampleId) .".sql";
+            " > " . $this->_tempFolder . '/' . $this->getDatabaseNameSample($siteSampleId) . ".sql";
 
         $commandCreate = "mysqladmin  -h " . $configResource['db']['params']['host'] .
             " -u " . $configResource['db']['params']['username'] .
-            " -p" . $configResource['db']['params']['password'] . " ". "create ".$domain;
+            " -p" . $configResource['db']['params']['password'] . " " . "create " . $domain;
 
         $command2 = "mysql -h " . $configResource['db']['params']['host'] .
             " -u " . $configResource['db']['params']['username'] .
-            " -p" . $configResource['db']['params']['password'] . " " . $domain." < ".$this->_tempFolder.'/'.
-            $this->getDatabaseNameSample($siteSampleId) .".sql";
+            " -p" . $configResource['db']['params']['password'] . " " . $domain . " < " . $this->_tempFolder . '/' .
+            $this->getDatabaseNameSample($siteSampleId) . ".sql";
+
+//        echo $command."<br/>";
+//        echo $commandCreate."<br/>";
+//        echo $command2."<br/>";
+//        die;
 
         $res = exec($command);
         $res = exec($commandCreate);
@@ -92,23 +132,76 @@ class Vts_Site_Wordpress
          * update some config for new domain.
          */
         //update url config, site name.
-        $options = $db->query("select * from " . $this->_prexTable . "options");
-        while ($row = mysql_fetch_object($options)) {
+        mysql_connect($configResource['db']['params']['host'], $configResource['db']['params']['username'],
+            $configResource['db']['params']['password']);
+        mysql_select_db($domain);
+
+        $options = $db->fetchAll($db->select()->from($this->_prexTable . "options"));
+        foreach ($options as $row) {
             //update URL
-            if (strpos($this->_sampleUrl, $row->option_value) !== null) {
-                $value = str_replace("http://".$this->_prexDomainSample.$siteSampleId, "http://" . $domain, $row->option_value);
-                $db->query("UPDATE " . $this->_prexTable . "options SET option_value='" . $value .
-                    "' WHERE option_name = '" . $row->option_name . "'");
+            if (!empty($row['option_value']) && strpos($this->_sampleUrl, $row['option_value']) !== null) {
+                $value = str_replace("http://" . $this->_prexDomainSample . $siteSampleId . "." . $this->_domain,
+                    "http://" . $domain, $row['option_value']);
+
+                mysql_query("UPDATE " . $this->_prexTable . "options SET option_value='" . $value .
+                    "' WHERE option_name = '" . $row['option_name'] . "'");
             }
         }
+        //echo "End set database...";
     }
 
     /**
      * Copy code to new site.
      * @author tien.nguyen
      */
-    public function copyCodeSample($siteSampleSite, $domain){
-        exec("cp -r ".$this->_basePath."/sample/".$this->_prexDomainSample.".".$siteSampleSite." ".
-            $this->_basePath.'/site/'.$domain);
+    public function copyCodeSample($siteSampleSite, $domain)
+    {
+        exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $this->_prexDomainSample . $siteSampleSite . "." . $this->_domain . " " .
+            $this->_basePath . '/site/' . $domain);
+//        echo "copy code...";
+    }
+
+    /**
+     * Change config file
+     * @author tien.nguyen
+     * @param $domain
+     */
+    public function changeConfigFile($sampleSiteId, $domain)
+    {
+        $pathNewDomain = $this->_basePath . '/site/' . $domain;
+
+        $configFile = $pathNewDomain . "/wp-config.php";
+        if (file_exists($configFile)) {
+            $string = file_get_contents($configFile);
+
+            //replace database
+            $oldDatabase = $this->_prexDomainSample . $sampleSiteId . "." . $this->_domain;
+
+            $string = str_replace("define('DB_NAME', '" . $oldDatabase . "');", "define('DB_NAME', '" . $domain . "');", $string);
+
+            //rewrite file
+            $handle = fopen($configFile, "w+");
+            fwrite($handle, $string);
+            fclose($handle);
+        }
+//        echo "copy config...";
+    }
+
+    /**
+     * Get all site sample
+     * @author tien.nguyen
+     */
+    public function getSamleSite()
+    {
+        $res = array();
+        if ($handle = opendir($this->_basePath . '/sample/wordpress')) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != "..") {
+                    $res[] = $entry;
+                }
+            }
+        }
+        closedir($handle);
+        return $res;
     }
 }

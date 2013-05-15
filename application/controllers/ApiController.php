@@ -25,10 +25,11 @@ class ApiController extends Vts_Controller_AbstractApiController {
         $domain = $this->_getParam("domain");
 
         $result = new stdClass();
+        $result->result = false;
 
         if($siteSampleId && $domain){
             $vtsWordpress = new Vts_Site_Wordpress();
-            $vtsWordpress->make($siteSampleId, $domain);
+            $result->result = $vtsWordpress->make($siteSampleId, $domain);
         }
 
         echo json_encode($result);

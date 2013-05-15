@@ -9,6 +9,10 @@ class IndexController extends Zend_Controller_Action
         /* Initialize action controller here */
     }
 
+    /**
+     * Add sample site
+     * @author tien.nguyen
+     */
     public function indexAction()
     {
 
