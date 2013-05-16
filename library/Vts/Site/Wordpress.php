@@ -55,6 +55,27 @@ class Vts_Site_Wordpress
         return $this->checkComplete($siteSampleId, $domain);
     }
 
+    /**
+     * Make website for wordpress
+     * @author tien.nguyen
+     */
+    public function duplicate($siteSampleId, $siteData = null)
+    {
+        //make domain
+        $domain = $this->_prex.$this->getSampleSiteIdRandom().".".$this->_domain;
+
+        //get and setup database site sample
+        $this->setupDatabase($siteSampleId, $domain, $siteData);
+
+        //copy code
+        $this->copyCodeSample($siteSampleId, $domain, $this->_basePath.'/sample/wordpress/');
+
+        //change file config
+        $this->changeConfigFile($siteSampleId, $domain);
+
+        return $this->checkComplete($siteSampleId, $domain, $this->_basePath.'/sample/wordpress/');
+    }
+
 
     /**
      * check is complete
@@ -62,7 +83,7 @@ class Vts_Site_Wordpress
      * @param $domain
      * @return bool
      */
-    public function checkComplete($siteSampleId, $domain)
+    public function checkComplete($siteSampleId, $domain, $pathTo = null)
     {
         $isComplete = true;
 
@@ -79,7 +100,10 @@ class Vts_Site_Wordpress
         }
 
         //check folder code
-        if(!is_dir($this->_basePath.'/site/'.$domain)){
+        if(empty($pathTo)){
+            $pathTo = $this->_basePath.'/site/'.$domain;
+        }
+        if(!is_dir($pathTo)){
             $isComplete = false;
         }
 
@@ -154,10 +178,14 @@ class Vts_Site_Wordpress
      * Copy code to new site.
      * @author tien.nguyen
      */
-    public function copyCodeSample($siteSampleSite, $domain)
+    public function copyCodeSample($siteSampleSite, $domain, $pathTo = null)
     {
-        exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $this->_prexDomainSample . $siteSampleSite . "." . $this->_domain . " " .
-            $this->_basePath . '/site/' . $domain);
+        if($pathTo){
+            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $this->_prexDomainSample . $siteSampleSite . "." . $this->_domain . " ". $pathTo . $domain);
+        }else{
+            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $this->_prexDomainSample . $siteSampleSite . "." . $this->_domain . " " .
+                $this->_basePath . '/site/' . $domain);
+        }
 //        echo "copy code...";
     }
 
@@ -203,5 +231,17 @@ class Vts_Site_Wordpress
         }
         closedir($handle);
         return $res;
+    }
+
+    /**
+     * Get site number by random
+     * @return int
+     */
+    public function getSampleSiteIdRandom(){
+        $int =  rand(1, 1000000);
+        while(strlen($int) < 7){
+            $int = "0".$int;
+        }
+        return $int;
     }
 }

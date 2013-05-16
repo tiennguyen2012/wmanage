@@ -34,4 +34,25 @@ class ApiController extends Vts_Controller_AbstractApiController {
 
         echo json_encode($result);
     }
+
+    /**
+     * Duplicate web site for sample.
+     */
+    public function duplicateWordpressAction(){
+        $siteSampleId = $this->_getParam("sample-id");
+
+        $result = new stdClass();
+        $result->result = false;
+
+        if($siteSampleId){
+            $vtsWordpress = new Vts_Site_Wordpress();
+            $result->result = $vtsWordpress->duplicate($siteSampleId);
+        }
+
+        echo json_encode($result);
+    }
+
+    public function downloadAction(){
+
+    }
 }

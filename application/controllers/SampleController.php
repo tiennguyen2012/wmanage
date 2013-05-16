@@ -14,4 +14,8 @@ class SampleController extends Zend_Controller_Action {
 
         $this->view->sampleSites = $sampleSites;
     }
+
+    public function downloadAction(){
+
+    }
 }
