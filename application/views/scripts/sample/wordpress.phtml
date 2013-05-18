@@ -3,17 +3,28 @@
         <tr>
             <th>#</th>
             <th>Sample Site</th>
+            <th>Sample</th>
+            <th>Build by</th>
+            <th>Build on</th>
             <th>Action</th>
         </tr>
         <?php foreach($this->sampleSites as $index => $sampleSite): ?>
         <tr>
             <td><?php echo ++$index ?> </td>
-            <td><?php echo $sampleSite ?> </td>
+            <td>
+                <?php echo $sampleSite->name ?>
+                <a target="_blank" href="http://<?php echo $sampleSite->name ?>" title="Go to site">[site]</a>
+                <a target="_blank" href="http://<?php echo $sampleSite->name ?>/wp-admin" title="Go to site">[admin]</a>
+            </td>
+            <td><?php echo $sampleSite->buildfrom ?></td>
+            <td><?php echo $sampleSite->buildby ?></td>
+            <td><?php echo $sampleSite->buildon ?></td>
             <td>
                 <!-- <a href="/api/create-wordpress/sample-id/1/domain/dev.photoshop.com" >Make site</a> -->
-                <a href="#" class="linkMakeSite  icon-shopping-cart" sampleid="<?php echo str_replace("samplew", "", strstr($sampleSite, ".", true)) ?>" title="Make site"></a>
-                <a target="_blank" href="http://<?php echo $sampleSite ?>" class="icon-globe" title="Go to site"></a>
-                <a href="/api/duplicate-wordpress/sample-id/<?php echo str_replace("samplew", "", strstr($sampleSite, ".", true)) ?>" class="icon-leaf" title="Duplicate to site"></a>
+                <a href="#" class="linkMakeSite  icon-shopping-cart" olddomain="<?php echo $sampleSite->name ?>" title="Make site"></a>
+                <a target="_blank" href="http://<?php echo $sampleSite->name ?>" class="icon-globe" title="Go to site"></a>
+                <a href="/api/duplicate-wordpress/olddomain/<?php echo $sampleSite->name ?>" class="icon-leaf" title="Duplicate to site"></a>
+                <a href="/api/delete-wordpress/domain/<?php echo $sampleSite->name ?>/type/sample" class="icon-remove" title="Delete this site"></a>
             </td>
         </tr>
         <?php endforeach; ?>
@@ -34,9 +45,9 @@
     </div>
 </div>
 <script type="text/javascript">
-    var sampleSiteId;
+    var olddomain;
     $('.linkMakeSite').click(function(){
-        sampleSiteId = $(this).attr('sampleid');
+        olddomain = $(this).attr('olddomain');
         $('#myModal').modal('show');
     })
     $('#btnCloseModal').click(function(){
@@ -44,7 +55,7 @@
         sampleSiteId = null;
     });
     $('#btnMakeSite').click(function(){
-        var url = "/api/create-wordpress/sample-id/"+ sampleSiteId + "/domain/" + $('#txtDomain').val();
+        var url = "/api/create-wordpress/olddomain/"+ olddomain + "/domain/" + $('#txtDomain').val();
         alert(url);
         $.ajax({
             url: url,
@@ -52,8 +63,10 @@
             success: function(data){
                 if(data.result == true){
                     alert('Success');
+                    $('#myModal').modal('hide');
                 }else{
                     alert('Fail');
+                    $('#myModal').modal('hide');
                 }
             }
         })

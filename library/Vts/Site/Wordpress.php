@@ -17,6 +17,13 @@ class Vts_Site_Wordpress
     private $_prexDomainSample = "samplew";
     private $_tempFolder = SAMPLE_SITE_TEMP_PATH;
 
+
+    private $_build;
+
+    public function __construct(){
+        $this->_build = new Vts_Site_Build();
+    }
+
     /**
      * Set base path
      * @author tien.nguyen
@@ -41,39 +48,47 @@ class Vts_Site_Wordpress
      * Make website for wordpress
      * @author tien.nguyen
      */
-    public function make($siteSampleId, $domain, $siteData = null)
+    public function make($olddomain, $domain, $siteData = null)
     {
         //get and setup database site sample
-        $this->setupDatabase($siteSampleId, $domain, $siteData);
+        $this->setupDatabase($olddomain, $domain, $siteData);
 
         //copy code
-        $this->copyCodeSample($siteSampleId, $domain);
+        $this->copyCodeSample($olddomain, $domain);
 
         //change file config
-        $this->changeConfigFile($siteSampleId, $domain);
+        $this->changeConfigFile($olddomain, $domain);
 
-        return $this->checkComplete($siteSampleId, $domain);
+        //generate file build
+        $this->_build->setOptions(array('buildfrom' => $olddomain));
+        $this->_build->generate($this->getPathRoot("site").'/'.$domain);
+
+        return $this->checkComplete($olddomain, $domain);
     }
 
     /**
      * Make website for wordpress
      * @author tien.nguyen
      */
-    public function duplicate($siteSampleId, $siteData = null)
+    public function duplicate($olddomain, $siteData = null)
     {
         //make domain
         $domain = $this->_prex . $this->getSampleSiteIdRandom() . "." . $this->_domain;
 
         //get and setup database site sample
-        $this->setupDatabase($siteSampleId, $domain, $siteData);
+        $this->setupDatabase($olddomain, $domain, $siteData);
 
         //copy code
-        $this->copyCodeSample($siteSampleId, $domain, $this->_basePath . '/sample/wordpress/');
+        $this->copyCodeSample($olddomain, $domain, $this->_basePath . '/sample/wordpress/');
 
         //change file config
-        $this->changeConfigFile($siteSampleId, $domain);
+        $this->changeConfigFile($olddomain, $domain);
 
-        return $this->checkComplete($siteSampleId, $domain, $this->_basePath . '/sample/wordpress/');
+        //generate file build
+        $this->_build->setOptions(array('buildfrom' => $olddomain));
+        $this->_build->generate($this->getPathRoot("sample").'/'.$domain);
+
+        return $this->checkComplete($olddomain, $domain, $this->_basePath . '/sample/wordpress/');
     }
 
 
@@ -83,7 +98,7 @@ class Vts_Site_Wordpress
      * @param $domain
      * @return bool
      */
-    public function checkComplete($siteSampleId, $domain, $pathTo = null)
+    public function checkComplete($olddomain, $domain, $pathTo = null)
     {
         $isComplete = true;
 
@@ -120,7 +135,7 @@ class Vts_Site_Wordpress
      *  - blogdescrition: description
      *  - admin_email:  email of customer
      */
-    public function setupDatabase($siteSampleId, $domain, $siteData)
+    public function setupDatabase($olddomain, $domain, $siteData)
     {
         $configResource = Vts_Config::get("resources");
         $configResource = $configResource->toArray();
@@ -131,8 +146,8 @@ class Vts_Site_Wordpress
         //execute mysql copy database to create new database
         $command = "mysqldump -h " . $configResource['db']['params']['host'] .
             " -u " . $configResource['db']['params']['username'] .
-            " -p" . $configResource['db']['params']['password'] . " " . $this->getDatabaseNameSample($siteSampleId) .
-            " > " . $this->_tempFolder . '/' . $this->getDatabaseNameSample($siteSampleId) . ".sql";
+            " -p" . $configResource['db']['params']['password'] . " " . $olddomain .
+            " > " . $this->_tempFolder . '/' . $olddomain . ".sql";
 
         $commandCreate = "mysqladmin  -h " . $configResource['db']['params']['host'] .
             " -u " . $configResource['db']['params']['username'] .
@@ -141,7 +156,7 @@ class Vts_Site_Wordpress
         $command2 = "mysql -h " . $configResource['db']['params']['host'] .
             " -u " . $configResource['db']['params']['username'] .
             " -p" . $configResource['db']['params']['password'] . " " . $domain . " < " . $this->_tempFolder . '/' .
-            $this->getDatabaseNameSample($siteSampleId) . ".sql";
+            $olddomain . ".sql";
 
 //        echo $command."<br/>";
 //        echo $commandCreate."<br/>";
@@ -164,7 +179,7 @@ class Vts_Site_Wordpress
         foreach ($options as $row) {
             //update URL
             if (!empty($row['option_value']) && strpos($this->_sampleUrl, $row['option_value']) !== null) {
-                $value = str_replace("http://" . $this->_prexDomainSample . $siteSampleId . "." . $this->_domain,
+                $value = str_replace("http://" . $olddomain,
                     "http://" . $domain, $row['option_value']);
 
                 mysql_query("UPDATE " . $this->_prexTable . "options SET option_value='" . $value .
@@ -178,12 +193,12 @@ class Vts_Site_Wordpress
      * Copy code to new site.
      * @author tien.nguyen
      */
-    public function copyCodeSample($siteSampleSite, $domain, $pathTo = null)
+    public function copyCodeSample($olddomain, $domain, $pathTo = null)
     {
         if ($pathTo) {
-            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $this->_prexDomainSample . $siteSampleSite . "." . $this->_domain . " " . $pathTo . $domain);
+            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $olddomain . " " . $pathTo . $domain);
         } else {
-            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $this->_prexDomainSample . $siteSampleSite . "." . $this->_domain . " " .
+            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $olddomain. " " .
                 $this->_basePath . '/site/' . $domain);
         }
 //        echo "copy code...";
@@ -194,7 +209,7 @@ class Vts_Site_Wordpress
      * @author tien.nguyen
      * @param $domain
      */
-    public function changeConfigFile($sampleSiteId, $domain)
+    public function changeConfigFile($olddomain, $domain)
     {
         $pathNewDomain = $this->_basePath . '/site/' . $domain;
 
@@ -203,7 +218,7 @@ class Vts_Site_Wordpress
             $string = file_get_contents($configFile);
 
             //replace database
-            $oldDatabase = $this->_prexDomainSample . $sampleSiteId . "." . $this->_domain;
+            $oldDatabase = $olddomain;
 
             $string = str_replace("define('DB_NAME', '" . $oldDatabase . "');", "define('DB_NAME', '" . $domain . "');", $string);
 
@@ -224,8 +239,45 @@ class Vts_Site_Wordpress
         $res = array();
         if ($handle = opendir($this->_basePath . '/sample/wordpress')) {
             while (false !== ($entry = readdir($handle))) {
-                if ($entry != "." && $entry != "..") {
-                    $res[] = $entry;
+                if ($entry != "." && $entry != ".." && $entry != "DELETED") {
+
+                    $siteSample = $this->_build->read($this->_basePath . '/sample/wordpress/'.$entry);
+                    if(empty($siteSample)){
+                        $siteSample = new stdClass();
+                    }
+                    $siteSample->name = $entry;
+                    $res[] = $siteSample;
+                }
+            }
+        }
+        closedir($handle);
+        return $res;
+    }
+
+    /**
+     * Get site
+     * @return array
+     */
+    public function getSites(){
+        $res = array();
+        if ($handle = opendir($this->_basePath . '/site')) {
+            while (false !== ($entry = readdir($handle))) {
+                if ($entry != "." && $entry != ".." && $entry != "DELETED") {
+                    $domainSite = new stdClass();
+                    $domainSite->name = $entry;
+                    if(file_exists($this->_basePath . '/site/'.$entry.'/build.txt')){
+                        $string = file_get_contents($this->_basePath . '/site/'.$entry.'/build.txt');
+                        $tmp = explode("\n", $string);
+                        foreach($tmp as $item){
+                            $tmp2 = explode("=", $item);
+                            if(count($tmp2) == 2){
+                                $domainSite->{$tmp2[0]} = $tmp2[1];
+                            }
+                        }
+                    }
+
+                    $res[] = $domainSite;
+
                 }
             }
         }
@@ -293,5 +345,28 @@ class Vts_Site_Wordpress
                 break;
         }
         return $path;
+    }
+
+    /**
+     * Delete site
+     * @param $path
+     * @param $domain
+     */
+    public function delete($domain, $type){
+        //rename folder
+        $path = $this->getPathRoot($type);
+        if(is_dir($path.'/'.$domain)){
+            //make folder
+            if(!is_dir($path.'/DELETED')){
+                mkdir($path.'/DELETED', 0777);
+            }
+            exec("cp -r ".$path.'/'.$domain." ". $path.'/DELETED/'.$domain.'_'.date('Y-m-d'));
+            exec("rm -rf ".$path.$domain);
+        }
+
+        //remove domain
+        //to do in there
+
+        return true;
     }
 }

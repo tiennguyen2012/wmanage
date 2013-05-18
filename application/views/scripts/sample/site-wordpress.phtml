@@ -1,0 +1,44 @@
+<div class="wordpress-sample">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Site Name</th>
+            <th>Sample</th>
+            <th>Build by</th>
+            <th>Build on</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach($this->sites as $index => $site): ?>
+        <tr>
+            <td><?php echo ++$index ?></td>
+            <td><?php echo $site->name ?>
+                <a target="_blank" href="http://<?php echo $site->name ?>" title="Go to site">[site]</a>
+                <a target="_blank" href="http://<?php echo $site->name ?>/wp-admin" title="Go to admin site">[admin]</a
+                <a target="_blank" href="#" title="Go to customer">[customer]</a>
+            </td>
+            <td><?php echo $site->buildfrom ?></td>
+            <td><?php echo $site->buildby ?></td>
+            <td><?php echo $site->buildon ?></td>
+            <td>
+                <!-- <a href="/api/create-wordpress/sample-id/1/domain/dev.photoshop.com" >Make site</a> -->
+                <a target="_blank" href="http://<?php echo $site->name ?>" class="icon-globe" title="Go to site"></a>
+                <a href="/api/delete-wordpress/domain/<?php echo $site->name ?>/type/site" class="icon-remove" title="Delete this sample"></a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+<div class="modal hide fade" id="myModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Site information</h3>
+    </div>
+    <div class="modal-body">
+        <span>Please input your domain</span>
+        <p>Your domain <input type="text" class="input-large" name="domain" id="txtDomain"/></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" id="btnCloseModal">Close</a>
+        <a href="#" class="btn btn-primary" id="btnMakeSite">Make Site</a>
+    </div>
+</div>

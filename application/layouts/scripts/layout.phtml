@@ -5,13 +5,26 @@
   <?php $this->headScript()->appendFile('/js/jquery-1.9.1.min.js') ?>
   <?php $this->headLink()->appendStylesheet('/bootstrap/css/bootstrap.min.css') ?>
   <?php $this->headScript()->appendFile('/bootstrap/js/bootstrap.min.js') ?>
+  <?php $this->headLink()->appendStylesheet('/css/style.css') ?>
    <?php echo $this->headLink(); ?>
     <?php echo $this->headScript(); ?>
     <?php echo $this->headMeta() ?>
 </head>
 <body>
-    <div class="container">
-        <?php echo $this->layout()->content; ?>
+
+    <div class="container-fluid">
+        <div class="banner"></div>
+        <div class="row-fluid">
+            <div class="span2">
+                 <ul>
+                    <li><a href="/sample/wordpress">Sample Wordpress</a></li>
+                    <li><a href="/sample/site-wordpress">Site Wordpress</a></li>
+                 </ul>
+            </div>
+            <div class="span10">
+            <?php echo $this->layout()->content; ?>
+            </div>
+        </div>
     </div>
 </body>
 </html>

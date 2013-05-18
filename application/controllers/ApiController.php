@@ -21,15 +21,15 @@ class ApiController extends Vts_Controller_AbstractApiController {
      * Create wordpress api
      */
     public function createWordpressAction(){
-        $siteSampleId = $this->_getParam("sample-id");
+        $olddomain = $this->_getParam("olddomain");
         $domain = $this->_getParam("domain");
 
         $result = new stdClass();
         $result->result = false;
 
-        if($siteSampleId && $domain){
+        if($olddomain && $domain){
             $vtsWordpress = new Vts_Site_Wordpress();
-            $result->result = $vtsWordpress->make($siteSampleId, $domain);
+            $result->result = $vtsWordpress->make($olddomain, $domain);
         }
 
         echo json_encode($result);
@@ -39,14 +39,32 @@ class ApiController extends Vts_Controller_AbstractApiController {
      * Duplicate web site for sample.
      */
     public function duplicateWordpressAction(){
-        $siteSampleId = $this->_getParam("sample-id");
+        $olddomain = $this->_getParam("olddomain");
 
         $result = new stdClass();
         $result->result = false;
 
-        if($siteSampleId){
+        if($olddomain){
             $vtsWordpress = new Vts_Site_Wordpress();
-            $result->result = $vtsWordpress->duplicate($siteSampleId);
+            $result->result = $vtsWordpress->duplicate($olddomain);
+        }
+
+        echo json_encode($result);
+    }
+
+    /**
+     * Delete site
+     */
+    public function deleteWordpressAction(){
+        $domain = $this->_getParam("domain");
+        $type = $this->_getParam("type");
+//        Zend_Debug::dump($this->_getAllParams()); die;
+        $result = new stdClass();
+        $result->result = false;
+
+        if($domain && $type){
+            $vtsWordpress = new Vts_Site_Wordpress();
+            $result->result = $vtsWordpress->delete($domain, $type);
         }
 
         echo json_encode($result);

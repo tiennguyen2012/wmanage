@@ -15,6 +15,13 @@ class SampleController extends Zend_Controller_Action {
         $this->view->sampleSites = $sampleSites;
     }
 
+    public function siteWordpressAction(){
+        $vtsWordpress = new Vts_Site_Wordpress();
+        $sites = $vtsWordpress->getSites();
+
+        $this->view->sites = $sites;
+    }
+
     public function downloadAction(){
 
     }
