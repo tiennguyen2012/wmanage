@@ -62,18 +62,18 @@ class Vts_Site_Wordpress
     public function duplicate($siteSampleId, $siteData = null)
     {
         //make domain
-        $domain = $this->_prex.$this->getSampleSiteIdRandom().".".$this->_domain;
+        $domain = $this->_prex . $this->getSampleSiteIdRandom() . "." . $this->_domain;
 
         //get and setup database site sample
         $this->setupDatabase($siteSampleId, $domain, $siteData);
 
         //copy code
-        $this->copyCodeSample($siteSampleId, $domain, $this->_basePath.'/sample/wordpress/');
+        $this->copyCodeSample($siteSampleId, $domain, $this->_basePath . '/sample/wordpress/');
 
         //change file config
         $this->changeConfigFile($siteSampleId, $domain);
 
-        return $this->checkComplete($siteSampleId, $domain, $this->_basePath.'/sample/wordpress/');
+        return $this->checkComplete($siteSampleId, $domain, $this->_basePath . '/sample/wordpress/');
     }
 
 
@@ -100,10 +100,10 @@ class Vts_Site_Wordpress
         }
 
         //check folder code
-        if(empty($pathTo)){
-            $pathTo = $this->_basePath.'/site/'.$domain;
+        if (empty($pathTo)) {
+            $pathTo = $this->_basePath . '/site/' . $domain;
         }
-        if(!is_dir($pathTo)){
+        if (!is_dir($pathTo)) {
             $isComplete = false;
         }
 
@@ -180,9 +180,9 @@ class Vts_Site_Wordpress
      */
     public function copyCodeSample($siteSampleSite, $domain, $pathTo = null)
     {
-        if($pathTo){
-            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $this->_prexDomainSample . $siteSampleSite . "." . $this->_domain . " ". $pathTo . $domain);
-        }else{
+        if ($pathTo) {
+            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $this->_prexDomainSample . $siteSampleSite . "." . $this->_domain . " " . $pathTo . $domain);
+        } else {
             exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $this->_prexDomainSample . $siteSampleSite . "." . $this->_domain . " " .
                 $this->_basePath . '/site/' . $domain);
         }
@@ -237,11 +237,61 @@ class Vts_Site_Wordpress
      * Get site number by random
      * @return int
      */
-    public function getSampleSiteIdRandom(){
-        $int =  rand(1, 1000000);
-        while(strlen($int) < 7){
-            $int = "0".$int;
+    public function getSampleSiteIdRandom()
+    {
+        $int = rand(1, 1000000);
+        while (strlen($int) < 7) {
+            $int = "0" . $int;
         }
         return $int;
+    }
+
+    /**
+     * Download website
+     * @param $domain
+     * @param $type
+     * @return bool|string
+     */
+    public function download($domain, $type){
+        try {
+            $newfile = $domain . "." . time();
+
+            //copy file to data temp
+            exec("cp -r " . $this->getPathRoot($type) . $domain . " " . $this->_tempFolder . "/" . $newfile);
+
+            //make sql in data temp
+            $configResource = Vts_Config::get("resources");
+            $configResource = $configResource->toArray();
+            $configResource['db']['params']['dbname'] = $domain;
+            $sql = "mysqldump -h " . $configResource['db']['params']['host'] .
+                " -u " . $configResource['db']['params']['username'] .
+                " -p" . $configResource['db']['params']['password'] . " " . $domain .
+                " > " . $this->_tempFolder . '/' . $domain . "/".$domain.".sql";
+
+            //zip file and send to header
+            exec("");
+            return $newfile;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Get path from root
+     * @param $type
+     * @return string
+     */
+    public function getPathRoot($type)
+    {
+        $path = "";
+        switch ($type) {
+            case "sample":
+                $path = $this->_basePath . '/sample/wordpress/';
+                break;
+            case "site":
+                $path = $this->_basePath . '/site/';
+                break;
+        }
+        return $path;
     }
 }

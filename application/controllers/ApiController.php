@@ -52,7 +52,21 @@ class ApiController extends Vts_Controller_AbstractApiController {
         echo json_encode($result);
     }
 
+    /**
+     * Download website with zip and database
+     */
     public function downloadAction(){
+        $domain = $this->_getParam('domain');
+        $typeSite = $this->_getParam('type');
 
+        //check exist domain and type of site
+        if($domain && $typeSite){
+            $vtsWordpress = new Vts_Site_Wordpress();
+            $fileName = $vtsWordpress->download($domain, $typeSite);
+            if($fileName){
+                $file = file_get_contents(SAMPLE_SITE_TEMP_PATH.'/'.$fileName);
+                echo $file;
+            }
+        }
     }
 }
