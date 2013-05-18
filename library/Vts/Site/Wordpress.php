@@ -9,13 +9,13 @@
 class Vts_Site_Wordpress
 {
 
-    private $_basePath = "E:/xampp/htdocs/vtssoft";
+    private $_basePath = SAMPLE_SITE_BASE_PATH;
     private $_endOfDb = "vtscat.com";
     private $_prex = "samplew";
     private $_prexTable = "wp_";
     private $_domain = "vtscat.com";
     private $_prexDomainSample = "samplew";
-    private $_tempFolder = "E:/xampp/htdocs/vtssoft/data/temp";
+    private $_tempFolder = SAMPLE_SITE_TEMP_PATH;
 
     /**
      * Set base path
