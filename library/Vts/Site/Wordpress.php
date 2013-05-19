@@ -33,34 +33,19 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract{
     }
 
     /**
-     * get database name sample id
-     * @author tien.nguyen
-     * @param $siteSamepleId
-     */
-    public function getDatabaseNameSample($siteSamepleId)
-    {
-        return $this->_prex . $siteSamepleId . "." . $this->_endOfDb;
-    }
-
-    /**
      * Make website for wordpress
      * @author tien.nguyen
      */
-    public function make($olddomain, $domain, $siteData = null)
-    {
+    public function make($olddomain, $domain, $siteData = null){
         //get and setup database site sample
         $this->setupDatabase($olddomain, $domain, $siteData);
-
         //copy code
         $this->copyCodeSample($olddomain, $domain);
-
         //change file config
         $this->changeConfigFile($olddomain, $domain);
-
         //generate file build
         $this->_build->setOptions(array('buildfrom' => $olddomain));
         $this->_build->generate($this->getPathRoot("site").'/'.$domain);
-
         return $this->checkComplete($olddomain, $domain);
     }
 
@@ -68,24 +53,18 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract{
      * Make website for wordpress
      * @author tien.nguyen
      */
-    public function duplicate($olddomain, $siteData = null)
-    {
+    public function duplicate($olddomain, $siteData = null){
         //make domain
         $domain = $this->_prex . $this->getSampleSiteIdRandom() . "." . $this->_domain;
-
         //get and setup database site sample
         $this->setupDatabase($olddomain, $domain, $siteData);
-
         //copy code
         $this->copyCodeSample($olddomain, $domain, $this->_basePath . '/sample/wordpress/');
-
         //change file config
         $this->changeConfigFile($olddomain, $domain);
-
         //generate file build
         $this->_build->setOptions(array('buildfrom' => $olddomain));
         $this->_build->generate($this->getPathRoot("sample").'/'.$domain);
-
         return $this->checkComplete($olddomain, $domain, $this->_basePath . '/sample/wordpress/');
     }
 
@@ -96,8 +75,7 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract{
      * @param $domain
      * @return bool
      */
-    public function checkComplete($olddomain, $domain, $pathTo = null)
-    {
+    public function checkComplete($olddomain, $domain, $pathTo = null)    {
         $isComplete = true;
 
         //check exist database
@@ -206,33 +184,26 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract{
      * @author tien.nguyen
      * @param $domain
      */
-    public function changeConfigFile($olddomain, $domain)
-    {
+    public function changeConfigFile($olddomain, $domain){
         $pathNewDomain = $this->_basePath . '/site/' . $domain;
-
         $configFile = $pathNewDomain . "/wp-config.php";
         if (file_exists($configFile)) {
             $string = file_get_contents($configFile);
-
             //replace database
             $oldDatabase = $olddomain;
-
             $string = str_replace("define('DB_NAME', '" . $oldDatabase . "');", "define('DB_NAME', '" . $domain . "');", $string);
-
             //rewrite file
             $handle = fopen($configFile, "w+");
             fwrite($handle, $string);
             fclose($handle);
         }
-//        echo "copy config...";
     }
 
     /**
      * Get all site sample
      * @author tien.nguyen
      */
-    public function getSamples()
-    {
+    public function getSamples(){
         $sites = $this->_directory->read($this->getPathRoot("sample"), nul, true, array('DELETED'));
         return $sites;
     }
