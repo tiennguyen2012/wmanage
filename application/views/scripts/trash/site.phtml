@@ -1,0 +1,24 @@
+<div class="trash-site">
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Site Name</th>
+            <th>Parent</th>
+            <th>Framework</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach($this->sites as $index => $site): ?>
+        <tr>
+            <td width="30"><?php echo ++$index ?> </td>
+            <td>
+                <?php echo $site->name ?>
+            </td>
+            <td><?php echo $site->buildfrom ?></td>
+            <td><?php echo $site->buildfw ?></td>
+            <td>
+                <a href="/site/delete/type/<?php echo TYPE_SITE ?>/domain/<?php echo $site->name ?>/fw/<?php echo FW_WORDPRESS ?>" class="icon-remove" olddomain="<?php echo $site->name ?>" title="Delete site"></a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

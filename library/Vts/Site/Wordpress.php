@@ -6,22 +6,20 @@
  * Time: 9:54 PM
  * To change this template use File | Settings | File Templates.
  */
-class Vts_Site_Wordpress
-{
+class Vts_Site_Wordpress extends Vts_Site_Abstract{
 
-    private $_basePath = SAMPLE_SITE_BASE_PATH;
     private $_endOfDb = "vtscat.com";
     private $_prex = "samplew";
     private $_prexTable = "wp_";
     private $_domain = "vtscat.com";
     private $_prexDomainSample = "samplew";
-    private $_tempFolder = SAMPLE_SITE_TEMP_PATH;
-
 
     private $_build;
+    private $_directory;
 
     public function __construct(){
         $this->_build = new Vts_Site_Build();
+        $this->_directory = new Vts_Site_Directory();
     }
 
     /**
@@ -196,12 +194,11 @@ class Vts_Site_Wordpress
     public function copyCodeSample($olddomain, $domain, $pathTo = null)
     {
         if ($pathTo) {
-            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $olddomain . " " . $pathTo . $domain);
+            exec("cp -r " . $this->getPathRoot("sample") . $olddomain . " " . $pathTo . $domain);
         } else {
-            exec("cp -r " . $this->_basePath . "/sample/wordpress/" . $olddomain. " " .
+            exec("cp -r " . $this->getPathRoot("sample") . $olddomain. " " .
                 $this->_basePath . '/site/' . $domain);
         }
-//        echo "copy code...";
     }
 
     /**
@@ -234,24 +231,10 @@ class Vts_Site_Wordpress
      * Get all site sample
      * @author tien.nguyen
      */
-    public function getSamleSite()
+    public function getSamples()
     {
-        $res = array();
-        if ($handle = opendir($this->_basePath . '/sample/wordpress')) {
-            while (false !== ($entry = readdir($handle))) {
-                if ($entry != "." && $entry != ".." && $entry != "DELETED") {
-
-                    $siteSample = $this->_build->read($this->_basePath . '/sample/wordpress/'.$entry);
-                    if(empty($siteSample)){
-                        $siteSample = new stdClass();
-                    }
-                    $siteSample->name = $entry;
-                    $res[] = $siteSample;
-                }
-            }
-        }
-        closedir($handle);
-        return $res;
+        $sites = $this->_directory->read($this->getPathRoot("sample"), nul, true, array('DELETED'));
+        return $sites;
     }
 
     /**
@@ -259,43 +242,19 @@ class Vts_Site_Wordpress
      * @return array
      */
     public function getSites(){
-        $res = array();
-        if ($handle = opendir($this->_basePath . '/site')) {
-            while (false !== ($entry = readdir($handle))) {
-                if ($entry != "." && $entry != ".." && $entry != "DELETED") {
-                    $domainSite = new stdClass();
-                    $domainSite->name = $entry;
-                    if(file_exists($this->_basePath . '/site/'.$entry.'/build.txt')){
-                        $string = file_get_contents($this->_basePath . '/site/'.$entry.'/build.txt');
-                        $tmp = explode("\n", $string);
-                        foreach($tmp as $item){
-                            $tmp2 = explode("=", $item);
-                            if(count($tmp2) == 2){
-                                $domainSite->{$tmp2[0]} = $tmp2[1];
-                            }
-                        }
-                    }
-
-                    $res[] = $domainSite;
-
-                }
-            }
-        }
-        closedir($handle);
-        return $res;
+        $sites = $this->_directory->read($this->getPathRoot("site"), nul, true, array('DELETED'));
+        return $sites;
     }
 
     /**
-     * Get site number by random
-     * @return int
+     * Override function remove.
+     * @author tien.nguyen
+     * @param $type
+     * @param $domain
+     * @return bool
      */
-    public function getSampleSiteIdRandom()
-    {
-        $int = rand(1, 1000000);
-        while (strlen($int) < 7) {
-            $int = "0" . $int;
-        }
-        return $int;
+    public function remove($type, $domain){
+        return parent::remove($type, $domain, FW_WORDPRESS);
     }
 
     /**
@@ -326,47 +285,5 @@ class Vts_Site_Wordpress
         } catch (Exception $e) {
             return false;
         }
-    }
-
-    /**
-     * Get path from root
-     * @param $type
-     * @return string
-     */
-    public function getPathRoot($type)
-    {
-        $path = "";
-        switch ($type) {
-            case "sample":
-                $path = $this->_basePath . '/sample/wordpress/';
-                break;
-            case "site":
-                $path = $this->_basePath . '/site/';
-                break;
-        }
-        return $path;
-    }
-
-    /**
-     * Delete site
-     * @param $path
-     * @param $domain
-     */
-    public function delete($domain, $type){
-        //rename folder
-        $path = $this->getPathRoot($type);
-        if(is_dir($path.'/'.$domain)){
-            //make folder
-            if(!is_dir($path.'/DELETED')){
-                mkdir($path.'/DELETED', 0777);
-            }
-            exec("cp -r ".$path.'/'.$domain." ". $path.'/DELETED/'.$domain.'_'.date('Y-m-d'));
-            exec("rm -rf ".$path.$domain);
-        }
-
-        //remove domain
-        //to do in there
-
-        return true;
     }
 }

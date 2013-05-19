@@ -17,3 +17,14 @@ if(APPLICATION_ENV == 'production'){
     define('SAMPLE_SITE_BASE_PATH', 'E:/xampp/htdocs/vtssoft/vtscat.com');
     define('SAMPLE_SITE_TEMP_PATH', 'E:/xampp/htdocs/vtssoft/vtscat.com/data/temp');
 }
+
+define("FW_DEFAULT", "wordpress");
+define("TYPE_SAMPLE", "sample");
+define("TYPE_SITE", "site");
+define("FOLDER_DELETED", "DELETED");
+
+/**
+ * LIST FW NAME
+ */
+define("FW_WORDPRESS", "wordpress");
+define("FW_JOOMLA", "joomla");

@@ -1,0 +1,8 @@
+<div>
+    <div>You create website success. With new domain <b><?php echo $this->domain ?></b></div>
+    <ul>
+        <li><a href="http://<?php echo $this->domain ?>">Go to site</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'site', 'action' => 'sample'), null, true) ?>">Go to samples</a></li>
+        <li><a href="<?php echo $this->url(array('controller' => 'site', 'action' => 'site'), null, true) ?>">Go to sites</a></li>
+    </ul>
+</div>

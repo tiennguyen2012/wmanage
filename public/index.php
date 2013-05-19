@@ -1,5 +1,8 @@
 <?php
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+//require_once "E:/xampp/htdocs/vtssoft/vtscat.com/system/mana.vtscat.com/library/Vts/Site/Database.php";
+//$ac = new Vts_Site_Database("localhost", "root", "123456");
+//echo $ac->isExistDatabase("vtscat.com");
 
 // Define path to application directory
 defined('APPLICATION_PATH')

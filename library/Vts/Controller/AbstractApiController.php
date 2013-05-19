@@ -9,7 +9,20 @@
 class Vts_Controller_AbstractApiController extends Zend_Controller_Action {
 
     public function init(){
-        //check tocken
+        //check username and password
+        $username = $this->_getParam('user');
+        $password = $this->_getParam('pass');
+
+        if($username && $password){
+            $apiConfig = Vts_Config::get("api");
+            if($username != $apiConfig->username || $password != $apiConfig->password){
+                echo json_encode(array('result' => false, 'message' => "Username and Password is invalid."));
+                die;
+            }
+        }else{
+            echo json_encode(array('result' => false, 'message' => "Username and Password is empty."));
+            die;
+        }
 
     }
 }

@@ -3,28 +3,29 @@
         <tr>
             <th>#</th>
             <th>Sample Site</th>
-            <th>Sample</th>
+            <th>Parent</th>
+            <th>Framework</th>
             <th>Build by</th>
             <th>Build on</th>
             <th>Action</th>
         </tr>
-        <?php foreach($this->sampleSites as $index => $sampleSite): ?>
+        <?php foreach($this->samples as $index => $sample): ?>
         <tr>
             <td><?php echo ++$index ?> </td>
             <td>
-                <?php echo $sampleSite->name ?>
-                <a target="_blank" href="http://<?php echo $sampleSite->name ?>" title="Go to site">[site]</a>
-                <a target="_blank" href="http://<?php echo $sampleSite->name ?>/wp-admin" title="Go to site">[admin]</a>
+                <?php echo $sample->name ?>
+                <a target="_blank" href="http://<?php echo $sample->name ?>" title="Go to site">[site]</a>
+                <a target="_blank" href="http://<?php echo $sample->name ?>/wp-admin" title="Go to site">[admin]</a>
             </td>
-            <td><?php echo $sampleSite->buildfrom ?></td>
-            <td><?php echo $sampleSite->buildby ?></td>
-            <td><?php echo $sampleSite->buildon ?></td>
+            <td><?php echo $sample->buildfrom ?></td>
+            <td><?php echo $sample->buildby ?></td>
+            <td><?php echo $sample->buildon ?></td>
             <td>
                 <!-- <a href="/api/create-wordpress/sample-id/1/domain/dev.photoshop.com" >Make site</a> -->
-                <a href="#" class="linkMakeSite  icon-shopping-cart" olddomain="<?php echo $sampleSite->name ?>" title="Make site"></a>
-                <a target="_blank" href="http://<?php echo $sampleSite->name ?>" class="icon-globe" title="Go to site"></a>
-                <a href="/api/duplicate-wordpress/olddomain/<?php echo $sampleSite->name ?>" class="icon-leaf" title="Duplicate to site"></a>
-                <a href="/api/delete-wordpress/domain/<?php echo $sampleSite->name ?>/type/sample" class="icon-remove" title="Delete this site"></a>
+                <a href="#" class="linkMakeSite  icon-shopping-cart" olddomain="<?php echo $sample->name ?>" title="Make site"></a>
+                <a target="_blank" href="http://<?php echo $sample->name ?>" class="icon-globe" title="Go to site"></a>
+                <a href="/api/duplicate-wordpress/olddomain/<?php echo $sample->name ?>" class="icon-leaf" title="Duplicate to site"></a>
+                <a href="/api/remove-wordpress/domain/<?php echo $sample->name ?>/type/sample" class="icon-remove" title="Delete this site"></a>
             </td>
         </tr>
         <?php endforeach; ?>

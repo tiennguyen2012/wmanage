@@ -1,0 +1,65 @@
+<div class="wordpress-sample">
+    <table class="table table-bordered">
+        <tr>
+            <th width="30">#</th>
+            <th>Sample Site</th>
+            <th>Parent</th>
+            <th>Framework</th>
+            <th>Build by</th>
+            <th>Build on</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach($this->samples as $index => $sample): ?>
+        <tr>
+            <td><?php echo ++$index ?> </td>
+            <td>
+                <?php echo $sample->name ?>
+                <a target="_blank" href="http://<?php echo $sample->name ?>" title="Go to site">[site]</a>
+                <a target="_blank" href="http://<?php echo $sample->name ?>/wp-admin" title="Go to site">[admin]</a>
+            </td>
+            <td><?php echo $sample->buildfrom ?></td>
+            <td><?php echo $sample->buildfw ?></td>
+            <td><?php echo $sample->buildby ?></td>
+            <td><?php echo $sample->buildon ?></td>
+            <td>
+                <!-- <a href="/api/create-wordpress/sample-id/1/domain/dev.photoshop.com" >Make site</a> -->
+                <a href="#" class="linkMakeSite  icon-shopping-cart" olddomain="<?php echo $sample->name ?>" title="Make site"></a>
+                (<a id="makeSiteApi" href="/api/create/olddomain/<?php echo $sample->name ?>/domain/test<?php echo time() ?>.vtscat.com/user/<?php echo Vts_Config::get("api")->username ?>/pass/<?php echo Vts_Config::get("api")->password ?>">api</a>)
+                <a target="_blank" href="http://<?php echo $sample->name ?>" class="icon-globe" title="Go to site"></a>
+                <a href="/site/duplicate/olddomain/<?php echo $sample->name ?>" class="icon-leaf" title="Duplicate to site"></a>
+                <a href="/site/remove/domain/<?php echo $sample->name ?>/type/<?php echo TYPE_SAMPLE ?>/fw/<?php echo FW_WORDPRESS ?>" class="icon-remove" title="Delete this site"></a>
+                (<a href="/api/remove/domain/<?php echo $sample->name ?>/type/<?php echo TYPE_SAMPLE ?>/fw/<?php echo FW_WORDPRESS ?>/user/<?php echo Vts_Config::get("api")->username ?>/pass/<?php echo Vts_Config::get("api")->password ?>">api</a>)
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+<div class="modal hide fade" id="myModal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Site information</h3>
+    </div>
+    <div class="modal-body">
+        <span>Please input your domain</span>
+        <p>Your domain <input type="text" class="input-large" name="domain" id="txtDomain"/></p>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" id="btnCloseModal">Close</a>
+        <a href="#" class="btn btn-primary" id="btnMakeSite">Make Site</a>
+    </div>
+</div>
+<script type="text/javascript">
+    var olddomain;
+    $('.linkMakeSite').click(function(){
+        olddomain = $(this).attr('olddomain');
+        $('#myModal').modal('show');
+    })
+    $('#btnCloseModal').click(function(){
+        $('#myModal').modal('hide');
+        sampleSiteId = null;
+    });
+    $('#btnMakeSite').click(function(){
+        var url = "<?php echo $this->link(array('controller' => 'site', 'action' => 'create' )) ?>/olddomain/"+ olddomain + "/domain/" + $('#txtDomain').val();
+        window.location.href = url;
+    })
+</script>

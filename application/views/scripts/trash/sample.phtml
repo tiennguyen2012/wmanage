@@ -1,0 +1,20 @@
+<div class="trash-sample">
+    <table class="table table-bordered">
+        <tr>
+            <th width="30">#</th>
+            <th>Site Name</th>
+            <th>Action</th>
+        </tr>
+        <?php foreach($this->samples as $index => $sample): ?>
+        <tr>
+            <td><?php echo ++$index ?> </td>
+            <td>
+                <?php echo $sample->name ?>
+            </td>
+            <td>
+                <a href="/site/delete/type/<?php echo TYPE_SAMPLE ?>/domain/<?php echo $sample->name ?>/fw/<?php echo FW_WORDPRESS ?>" class="icon-remove" title="Delete site"></a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>

@@ -15,8 +15,7 @@ class Vts_Site_Build {
         $this->_options['buildon'] = date('Y-m-d h:i:s');
         $this->_options['buildby'] = $_SERVER['HTTP_HOST'];
         $this->_options['buildbyip'] = $_SERVER['REMOTE_ADDR'];
-
-
+        $this->_options['buildfw'] = FW_DEFAULT;
     }
 
     public function setOptions($options){

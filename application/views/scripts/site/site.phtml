@@ -1,9 +1,10 @@
 <div class="wordpress-sample">
     <table class="table table-bordered">
         <tr>
-            <th>#</th>
+            <th width="30">#</th>
             <th>Site Name</th>
-            <th>Sample</th>
+            <th>Parent</th>
+            <th>Framework</th>
             <th>Build by</th>
             <th>Build on</th>
             <th>Action</th>
@@ -17,12 +18,13 @@
                 <a target="_blank" href="#" title="Go to customer">[customer]</a>
             </td>
             <td><?php echo $site->buildfrom ?></td>
+            <td><?php echo $site->buildfw ?></td>
             <td><?php echo $site->buildby ?></td>
             <td><?php echo $site->buildon ?></td>
             <td>
                 <!-- <a href="/api/create-wordpress/sample-id/1/domain/dev.photoshop.com" >Make site</a> -->
                 <a target="_blank" href="http://<?php echo $site->name ?>" class="icon-globe" title="Go to site"></a>
-                <a href="/api/delete-wordpress/domain/<?php echo $site->name ?>/type/site" class="icon-remove" title="Delete this sample"></a>
+                <a href="/site/remove/domain/<?php echo $site->name ?>/type/<?php echo TYPE_SITE ?>/fw/<?php echo FW_WORDPRESS ?>" class="icon-remove" title="Delete this sample"></a>
             </td>
         </tr>
         <?php endforeach; ?>

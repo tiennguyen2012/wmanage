@@ -18,35 +18,38 @@ class ApiController extends Vts_Controller_AbstractApiController {
     }
 
     /**
-     * Create wordpress api
+     * Create site for sample
+     * @author tien.nguyen
      */
-    public function createWordpressAction(){
-        $olddomain = $this->_getParam("olddomain");
+    public function createAction(){
+        $oldDomain = $this->_getParam("olddomain");
         $domain = $this->_getParam("domain");
+        $fw = $this->_getParam("fw", FW_DEFAULT);
 
         $result = new stdClass();
         $result->result = false;
 
-        if($olddomain && $domain){
-            $vtsWordpress = new Vts_Site_Wordpress();
-            $result->result = $vtsWordpress->make($olddomain, $domain);
+        if($oldDomain && $domain){
+            $objSite = Vts_Util::getClassType($fw);
+            $result->result = $objSite->make($oldDomain, $domain);
         }
-
         echo json_encode($result);
     }
 
     /**
      * Duplicate web site for sample.
+     * @author tien.nguyen
      */
-    public function duplicateWordpressAction(){
-        $olddomain = $this->_getParam("olddomain");
+    public function duplicateAction(){
+        $oldDomain = $this->_getParam("olddomain");
+        $fw = $this->_getParam("fw", FW_DEFAULT);
 
         $result = new stdClass();
         $result->result = false;
 
-        if($olddomain){
-            $vtsWordpress = new Vts_Site_Wordpress();
-            $result->result = $vtsWordpress->duplicate($olddomain);
+        if($oldDomain){
+            $objSite = Vts_Util::getClassType($fw);
+            $result->result = $objSite->duplicate($oldDomain);
         }
 
         echo json_encode($result);
@@ -55,18 +58,18 @@ class ApiController extends Vts_Controller_AbstractApiController {
     /**
      * Delete site
      */
-    public function deleteWordpressAction(){
+    public function removeAction(){
         $domain = $this->_getParam("domain");
-        $type = $this->_getParam("type");
-//        Zend_Debug::dump($this->_getAllParams()); die;
+        $type = $this->_getParam("type", TYPE_SAMPLE);
+        $fw = $this->_getParam('fw', FW_DEFAULT);
+
         $result = new stdClass();
         $result->result = false;
 
-        if($domain && $type){
-            $vtsWordpress = new Vts_Site_Wordpress();
-            $result->result = $vtsWordpress->delete($domain, $type);
+        if($domain && $type && $fw){
+            $objSite = Vts_Util::getClassType($fw);
+            $result->result = $objSite->remove($type, $domain);
         }
-
         echo json_encode($result);
     }
 

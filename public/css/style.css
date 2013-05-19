@@ -1,3 +1,10 @@
+body {
+    font-size: 13px;
+}
+table {
+    font-size: 13px;
+}
+
 .banner {
     height: 50px;
 }
