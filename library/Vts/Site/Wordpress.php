@@ -42,7 +42,7 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract{
         //copy code
         $this->copyCodeSample($olddomain, $domain);
         //change file config
-        $this->changeConfigFile($olddomain, $domain);
+        $this->changeConfigFile($olddomain, $domain, TYPE_SITE);
         //generate file build
         $this->_build->setOptions(array('buildfrom' => $olddomain));
         $this->_build->generate($this->getPathRoot("site").'/'.$domain);
@@ -61,10 +61,11 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract{
         //copy code
         $this->copyCodeSample($olddomain, $domain, $this->_basePath . '/sample/wordpress/');
         //change file config
-        $this->changeConfigFile($olddomain, $domain);
+        $this->changeConfigFile($olddomain, $domain, TYPE_SAMPLE);
         //generate file build
         $this->_build->setOptions(array('buildfrom' => $olddomain));
         $this->_build->generate($this->getPathRoot("sample").'/'.$domain);
+
         return $this->checkComplete($olddomain, $domain, $this->_basePath . '/sample/wordpress/');
     }
 
@@ -184,8 +185,9 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract{
      * @author tien.nguyen
      * @param $domain
      */
-    public function changeConfigFile($olddomain, $domain){
-        $pathNewDomain = $this->_basePath . '/site/' . $domain;
+    public function changeConfigFile($olddomain, $domain, $type){
+        $path = $this->getPathRoot($type, FW_DEFAULT);
+        $pathNewDomain = $path. $domain;
         $configFile = $pathNewDomain . "/wp-config.php";
         if (file_exists($configFile)) {
             $string = file_get_contents($configFile);
