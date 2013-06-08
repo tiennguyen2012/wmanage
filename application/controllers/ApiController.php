@@ -72,6 +72,32 @@ class ApiController extends Vts_Controller_AbstractApiController {
         }
         echo json_encode($result);
     }
+    
+    /**
+     * This is api to install theme from SAMPLE site to REAL site.
+     * Copy theme and install plugins.
+     * We need some params
+     * - old-domain
+     * - new-domain
+     * - user: this is params of parent
+     * - pass: this is params of parent
+     * @author tien.nguyen
+     */
+    public function installThemeAction(){
+    	$oldDomain = $this->_getParam('old-domain');
+    	$newDomain = $this->_getParam('new-domain');
+    	$fw = $this->_getParam('fw', FW_DEFAULT);
+    	
+    	$result = new stdClass();
+    	$result->result = false;
+    	
+    	if($oldDomain && $newDomain && fw){
+    		$objSite = Vts_Util::getClassType($fw);
+    		$result->result = $objSite->installTheme($oldDomain, $newDomain);
+    	}
+    	
+    	echo json_encode($result);
+    }
 
     /**
      * Download website with zip and database

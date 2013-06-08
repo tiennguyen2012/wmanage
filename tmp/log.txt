@@ -1,0 +1,73 @@
+2013-06-08 12:52:44: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 318 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 286 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:01:21: syntax error, unexpected TC_LABEL, expecting '=' in E:/xampp/htdocs/vtssoft/vtscat.com/sample/wordpress//samplew0406586.vtscat.com/wp-content/themes/b-company/info.ini on line 2
+
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 291 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:01:34: syntax error, unexpected TC_LABEL, expecting '=' in E:/xampp/htdocs/vtssoft/vtscat.com/sample/wordpress//samplew0406586.vtscat.com/wp-content/themes/b-company/info.ini on line 2
+
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 291 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:01:37: syntax error, unexpected TC_LABEL, expecting '=' in E:/xampp/htdocs/vtssoft/vtscat.com/sample/wordpress//samplew0406586.vtscat.com/wp-content/themes/b-company/info.ini on line 2
+
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 291 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:01:51: syntax error, unexpected TC_LABEL, expecting '=' in E:/xampp/htdocs/vtssoft/vtscat.com/sample/wordpress//samplew0406586.vtscat.com/wp-content/themes/b-company/info.ini on line 2
+
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 291 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:01:56: syntax error, unexpected TC_LABEL, expecting '=' in E:/xampp/htdocs/vtssoft/vtscat.com/sample/wordpress//samplew0406586.vtscat.com/wp-content/themes/b-company/info.ini on line 2
+
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 291 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run

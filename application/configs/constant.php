@@ -18,6 +18,11 @@ if(APPLICATION_ENV == 'production'){
     define('SAMPLE_SITE_TEMP_PATH', 'E:/xampp/htdocs/vtssoft/vtscat.com/data/temp');
 }
 
+/**
+ * Config debug system
+ */
+define("LOG_ENABLED", true);
+
 define("FW_DEFAULT", "wordpress");
 define("TYPE_SAMPLE", "sample");
 define("TYPE_SITE", "site");

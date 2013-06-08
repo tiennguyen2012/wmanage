@@ -40,7 +40,7 @@ class Vts_Site_Abstract {
     /**
      * Get path from root
      *
-     * @param $type
+     * @param $type - TYPE_SAMPLE, TYPE_SITE
      * @return string
      */
     public function getPathRoot($type, $framework = FW_DEFAULT){
@@ -54,6 +54,17 @@ class Vts_Site_Abstract {
                 break;
         }
         return $path;
+    }
+    
+    /**
+     * Copy from folder to folder by command line
+     * 
+     * @author tien.nguyen
+     * @param string $oldPath
+     * @param string $newPath
+     */
+    protected function copyTo($oldPath, $newPath){
+    	exec("cp -r " . $oldPath . " " . $newPath);
     }
 
     /**
