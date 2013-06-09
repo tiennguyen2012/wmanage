@@ -23,6 +23,5 @@ class Vts_Controller_AbstractApiController extends Zend_Controller_Action {
             echo json_encode(array('result' => false, 'message' => "Username and Password is empty."));
             die;
         }
-
     }
 }

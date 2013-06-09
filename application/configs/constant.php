@@ -29,6 +29,13 @@ define("TYPE_SITE", "site");
 define("FOLDER_DELETED", "DELETED");
 
 /**
+ * Username and password login admin
+ */
+define('USERNAME', 'admin');
+define('PASSWORD', 'manavts123');
+
+
+/**
  * LIST FW NAME
  */
 define("FW_WORDPRESS", "wordpress");

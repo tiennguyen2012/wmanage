@@ -1,0 +1,57 @@
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>VTSCat Management</title>
+<link rel="shortcut icon" href="/images/icon_white.ico" />
+    <?php $this->headLink()->appendStylesheet('/bootstrap/css/bootstrap.min.css')?>
+    <?php $this->headLink()->appendStylesheet('/bootstrap/css/bootstrap-responsive.min.css')?>
+    <?php $this->headLink()->appendStylesheet('/bootstrap/css/doc.css')?>
+    <?php $this->headLink()->appendStylesheet('/jquery-ui/css/smoothness/jquery-ui-1.10.1.custom.min.css')?>
+    <?php $this->headLink()->appendStylesheet('/css/admin.css')?>
+    <?php $this->headScript()->appendFile('/js/jquery.min.js')?>
+    <?php $this->headScript()->appendFile('/jquery-ui/js/jquery-ui-1.10.1.custom.min.js')?>
+    <?php $this->headScript()->appendFile('/bootstrap/js/bootstrap.min.js')?>
+    <?php $this->headScript()->appendFile('/js/admin.js')?>
+    <?php echo $this->headTitle()?>
+    <?php echo $this->headScript()?>
+    <?php echo $this->headStyle()?>
+    <?php echo $this->headLink()?>
+</head>
+<body>
+	<div class="page container" align="center">
+		<div style="text-align: left; width: 400px">
+			<form action="" method="post">
+				<div>
+					<h4>Login System</h4>
+			
+			<?php echo $this->partial('message-error.phtml', array('form' => $this->form))?>
+			
+			<div class="content">
+						<div class="row-fuild">
+							<div>Username</div>
+							<div>
+								<input type="text" name="Username"
+									value="<?php echo $this->form->getElement('Username')->getValue() ?>" />
+							</div>
+						</div>
+						<div class="row-fuild">
+							<div>Password</div>
+							<div>
+								<input type="password" name="Password"
+									value="<?php echo $this->form->getElement('Password')->getValue() ?>" />
+							</div>
+						</div>
+						<div class="row-fuild">
+							<input class="btn btn-primary" type="submit" value="Login" /> 
+							<input class="btn" type="reset" value="Reset" />
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
