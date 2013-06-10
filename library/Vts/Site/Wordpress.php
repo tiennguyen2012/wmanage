@@ -423,7 +423,7 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract {
 	 * @author tien.nguyen
 	 */
 	public function getSamples() {
-		$sites = $this->_directory->read ( $this->getPathRoot ( "sample" ), nul, true, array (
+		$sites = $this->_directory->read ( $this->getPathRoot ( "sample" ), null, true, array (
 				'DELETED' 
 		) );
 		return $sites;
@@ -435,7 +435,7 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract {
 	 * @return array
 	 */
 	public function getSites() {
-		$sites = $this->_directory->read ( $this->getPathRoot ( "site" ), nul, true, array (
+		$sites = $this->_directory->read ( $this->getPathRoot ( "site" ), null, true, array (
 				'DELETED' 
 		) );
 		return $sites;

@@ -17,8 +17,6 @@ class Vts_Site_Directory {
     public function read($path, $properties = null, $isBuild = false, $notShow = array()){
         if(is_dir($path)){
             $res = array();
-
-            $res = array();
             if ($handle = opendir($path)) {
                 while (false !== ($entry = readdir($handle))) {
                     //not add folder . .. notshow
