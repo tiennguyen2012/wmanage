@@ -20,7 +20,8 @@ class Vts_Site_Directory {
             if ($handle = opendir($path)) {
                 while (false !== ($entry = readdir($handle))) {
                     //not add folder . .. notshow
-                    if ($entry != "." && $entry != ".." && !in_array(strtoupper($entry), $notShow)) {
+                    if ($entry != "." && $entry != ".." && !in_array(strtoupper($entry), $notShow) 
+                    	&& is_dir($path.'/'.$entry)) {
 
                         //create new item to get name
                         $item = new stdClass();
