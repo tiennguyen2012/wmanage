@@ -1,42 +1,43 @@
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<?php $this->headTitle("VTSCat Management")?>
   <?php echo $this->headTitle(); ?>
-  <?php $this->headScript()->appendFile('/js/jquery-1.9.1.min.js') ?>
-  <?php $this->headLink()->appendStylesheet('/bootstrap/css/bootstrap.min.css') ?>
-  <?php $this->headScript()->appendFile('/bootstrap/js/bootstrap.min.js') ?>
-  <?php $this->headLink()->appendStylesheet('/css/style.css') ?>
+  <link rel="shortcut icon" href="/image/icon_white.ico" />
+  <?php $this->headScript()->appendFile('/js/jquery-1.9.1.min.js')?>
+  <?php $this->headLink()->appendStylesheet('/bootstrap/css/bootstrap.min.css')?>
+  <?php $this->headScript()->appendFile('/bootstrap/js/bootstrap.min.js')?>
+  <?php $this->headLink()->appendStylesheet('/css/style.css')?>
    <?php echo $this->headLink(); ?>
     <?php echo $this->headScript(); ?>
-    <?php echo $this->headMeta() ?>
+    <?php echo $this->headMeta()?>
 </head>
 <body>
 
-    <div class="container-fluid">
-        <div class="banner row-fluid">
-        	<div class="span9"></div>
-        	<div class="span3" style="text-align: right;">
+	<div class="container-fluid">
+		<div class="banner row-fluid">
+			<div class="span9"></div>
+			<div class="span3" style="text-align: right;">
         		<?php $vtsUser = new Vts_User()?>
         		<?php if($vtsUser->isLogined()): ?>
-        		<span><?php echo USERNAME ?></span>
-        		<a href="/user/logout">Logout</a>
+        		<span><?php echo USERNAME ?></span> <a href="/user/logout">Logout</a>
         		<?php endif;?>
         	</div>
-        </div>
-        <div class="row-fluid">
-            <div class="span2">
-                 <h4>Wordpress</h4>
-                 <ul>
-                    <li><a href="/site/sample">Samples</a></li>
-                    <li><a href="/site/site">Sites</a></li>
-                    <li><a href="/trash/sample/">Trash Samples </a></li>
-                    <li><a href="/trash/site">Trash Sites</a></li>
-                 </ul>
-            </div>
-            <div class="span10">
+		</div>
+		<div class="row-fluid">
+			<div class="span2">
+				<h4>Wordpress</h4>
+				<ul>
+					<li><a href="/site/sample">Samples</a></li>
+					<li><a href="/site/site">Sites</a></li>
+					<li><a href="/trash/sample/">Trash Samples </a></li>
+					<li><a href="/trash/site">Trash Sites</a></li>
+				</ul>
+			</div>
+			<div class="span10">
             <?php echo $this->layout()->content; ?>
             </div>
-        </div>
-    </div>
+		</div>
+	</div>
 </body>
 </html>
