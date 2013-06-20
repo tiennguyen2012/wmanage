@@ -70,4 +70,112 @@
  ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
  ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
  ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:53:44: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 319 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 287 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:54:24: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 319 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 287 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:56:15: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 319 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 287 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:56:40: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 319 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 287 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:56:55: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 319 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 287 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:57:04: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 319 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 287 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:57:31: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 319 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 287 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:57:42: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 319 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 287 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run2013-06-08 02:57:55: Active Plugin not found.
+
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Log.php line: 37 function: getString
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 319 function: log
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 287 function: _activePlugins
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\library\Vts\Site\Wordpress.php line: 225 function: _installPlugin
+ ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\application\controllers\ApiController.php line: 96 function: installTheme
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Action.php line: 513 function: installThemeAction
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Dispatcher\Standard.php line: 295 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Controller\Front.php line: 954 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application\Bootstrap\Bootstrap.php line: 97 function: dispatch
+ ----- file: D:\ZendFramework-1.11.7\library\Zend\Application.php line: 366 function: run
  ----- file: E:\xampp\htdocs\vtssoft\vtscat.com\system\mana.vtscat.com\public\index.php line: 34 function: run

@@ -198,9 +198,9 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract {
 	 */
 	public function copyCodeSample($olddomain, $domain, $pathTo = null) {
 		if ($pathTo) {
-			exec ( "cp -r " . $this->getPathRoot ( "sample" ) . $olddomain . " " . $pathTo . $domain );
+			echo exec ( "cp -r " . $this->getPathRoot ( "sample" ) . $olddomain . " " . $pathTo . $domain );
 		} else {
-			exec ( "cp -r " . $this->getPathRoot ( "sample" ) . $olddomain . " " . $this->_basePath . '/site/' . $domain );
+			echo exec ( "cp -r " . $this->getPathRoot ( "sample" ) . $olddomain . " " . $this->_basePath . '/site/' . $domain );
 		}
 	}
 	
@@ -462,24 +462,35 @@ class Vts_Site_Wordpress extends Vts_Site_Abstract {
 	 *        	$domain
 	 * @param
 	 *        	$type
-	 * @return bool string
+	 * @return bool string is path for zip file
 	 */
 	public function download($domain, $type) {
 		try {
-			$newfile = $domain . "." . time ();
-			
 			// copy file to data temp
-			exec ( "cp -r " . $this->getPathRoot ( $type ) . $domain . " " . $this->_tempFolder . "/" . $newfile );
+			//exec ( "cp -r " . $this->getPathRoot ( $type ) . $domain . " " . $this->_tempFolder . "/" . $newfile );
+			
+			//check exist folder 
+			$sampleFolderDatabase = $this->getPathRoot($type) . '/' . $domain . "/database";
+			if(!is_dir($sampleFolderDatabase)){
+				mkdir($sampleFolderDatabase, 777);
+			}
 			
 			// make sql in data temp
 			$configResource = Vts_Config::get ( "resources" );
 			$configResource = $configResource->toArray ();
 			$configResource ['db'] ['params'] ['dbname'] = $domain;
-			$sql = "mysqldump -h " . $configResource ['db'] ['params'] ['host'] . " -u " . $configResource ['db'] ['params'] ['username'] . " -p" . $configResource ['db'] ['params'] ['password'] . " " . $domain . " > " . $this->_tempFolder . '/' . $domain . "/" . $domain . ".sql";
+			$sql = "mysqldump -h " . $configResource ['db'] ['params'] ['host'] . " -u " . 
+				$configResource ['db'] ['params'] ['username'] . " -p" . 
+				$configResource ['db'] ['params'] ['password'] . " " . $domain . " > " . 
+				$sampleFolderDatabase . "/" . $domain ."_".
+				Zend_Date::now()->toString('yyyy-MM-dd'). ".sql";
 			
 			// zip file and send to header
-			exec ( "" );
-			return $newfile;
+			$filenameZipFile = $this->_tempFolder. '/' . $domain.".zip ";
+			$cmdZip = "cd /home/web/sites/vtscat.com/sample/wordpress; zip -r ". $filenameZipFile.
+				 $this->getPathRoot($type) . '/' . $domain;
+			exec ($cmdZip);
+			return $filenameZipFile;
 		} catch ( Exception $e ) {
 			return false;
 		}

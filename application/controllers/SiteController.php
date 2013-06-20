@@ -90,4 +90,24 @@ class SiteController extends Vts_Controller_AbstractController {
             }
         }
     }
+    
+    /**
+     * Action download file
+     * @author tien.nguyen
+     */
+    public function downloadAction(){
+    	$domain = $this->_getParam('domain');
+    	$fw = $this->_getParam('fw', FW_DEFAULT);
+    	$type = $this->_getParam('type');
+    	if($domain && $fw && $type){
+    		// download file and get path
+    		$res = $this->_site->download($type, $domain, $fw);
+    		
+    		// set header zip file
+    		
+    		// print content of file
+    		echo file_get_contents($res);
+    	}
+    	
+    }
 }

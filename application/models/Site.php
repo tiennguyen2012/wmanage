@@ -37,6 +37,19 @@ class Application_Model_Site {
         $res = $objSite->remove($type, $domain, $fw);
         return $res;
     }
+    
+    /**
+     * Function dowload call API
+     * @param unknown $domain
+     * @param unknown $type
+     * @param string $fw
+     * @return Ambigous <boolean, string>
+     */
+    public function download($type, $domain, $fw = FW_DEFAULT){
+    	$objSite = Vts_Util::getClassType($fw);
+    	$res = $objSite->download($domain, $type);
+    	return $res;
+    }
 
     public function delete($type, $domain, $fw = FW_DEFAULT){
         $objSite = Vts_Util::getClassType($fw);
